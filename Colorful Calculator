@@ -1,0 +1,104 @@
+#Description: Powershell Calculator
+#author: Abdulkadir Omar
+clear-host
+
+#add loop; Ask to continue, Back to menu
+#add an exit
+#make it pretty
+
+#start Menu
+
+Function Main-Menu
+{
+    Write-Host "*****Calculator*****" -ForegroundColor Cyan
+    Write-Host "Press 1 for Addition" -ForegroundColor Yellow
+    Write-Host "Press 2 for Subtraction" -ForegroundColor Yellow
+    Write-Host "Press 3 for Multiplication" -ForegroundColor Yellow
+    Write-Host "Press 4 for Division" -ForegroundColor Yellow
+    Write-Host "Press 5 for Exit" -ForegroundColor Red
+}
+
+
+#Start Function
+Function Addition
+{
+    $Num1, $Num2 = Get-Numbers
+    $Sum = $Num1 + $Num2
+    Write-Host "The sum is " $Sum -ForegroundColor Green
+}
+Function Subtraction
+{
+    $num1, $num2 = Get-Numbers
+    $Diff = $num1 - $num2
+    Write-Host "The Difference is " $Diff -ForegroundColor Green
+}
+Function Multiplication
+{
+    $Num1, $num2 = Get-Numbers
+    $Result = $num1 * $num2
+    Write-Host "The result is " $Result -ForegroundColor Green
+}
+Function Division
+{
+    $num1, $num2 = Get-Numbers
+    $Total = $num1 / $num2
+    Write-Host "The total is " $Total -ForegroundColor Green
+}
+
+function Get-Numbers
+{
+    [int]$num1 = Read-Host "Enter the first number"
+    [int]$num2 = Read-host "Enter the second number"
+    return $num1, $num2
+}
+#Start loop
+Do{ 
+Clear-host
+#start Calculator
+Main-Menu
+
+#Get user info
+Write-Host "Select your option. " -ForegroundColor White -NoNewline
+$choice = Read-Host
+
+if($choice -eq '5') {
+                        Write-Host "Good-Bye!" -ForegroundColor Cyan
+                        Break
+                    }
+ 
+#Start Switch
+Switch($choice)
+ {
+    1
+        {
+            Addition
+        }
+    2
+        { Subtraction
+        }
+    3
+        { Multiplication
+        }
+    4
+        { Division
+        }
+    5
+        { Exit
+        }
+        Defualt
+            { Invalid Option
+            }
+    }
+    Write-host ""
+   # 1. Ask the user what they want to do next
+    Write-Host "Do you want to (M)enu or (E)xit? " -ForegroundColor Yellow -NoNewline
+    $goBack = Read-Host
+
+    # 2. If they type 'E' or 'e', say goodbye and break the loop
+    if ($goBack -eq 'E' -or $goBack -eq 'e') {
+        Clear-Host
+        Write-Host "Good-Bye!" -ForegroundColor Cyan
+        break
+    }
+
+} while ($true)         
