@@ -11,9 +11,9 @@ clear-host
 Function Main-Menu
 {
     Write-Host "*****Calculator*****" -ForegroundColor Cyan
-    Write-Host "Press 1 for Addition" -ForegroundColor Yellow
-    Write-Host "Press 2 for Subtraction" -ForegroundColor Yellow
-    Write-Host "Press 3 for Multiplication" -ForegroundColor Yellow
+    Write-Host "Press 1 for Addition" -ForegroundColor White
+    Write-Host "Press 2 for Subtraction" -ForegroundColor Magenta
+    Write-Host "Press 3 for Multiplication" -ForegroundColor DarkCyan
     Write-Host "Press 4 for Division" -ForegroundColor Yellow
     Write-Host "Press 5 for Exit" -ForegroundColor Red
 }
@@ -24,31 +24,37 @@ Function Addition
 {
     $Num1, $Num2 = Get-Numbers
     $Sum = $Num1 + $Num2
-    Write-Host "The sum is " $Sum -ForegroundColor Green
+    Write-Host "The sum is " $Sum -ForegroundColor DarkBlue
 }
 Function Subtraction
 {
     $num1, $num2 = Get-Numbers
     $Diff = $num1 - $num2
-    Write-Host "The Difference is " $Diff -ForegroundColor Green
+    Write-Host "The Difference is " $Diff -ForegroundColor Magenta
 }
 Function Multiplication
 {
     $Num1, $num2 = Get-Numbers
     $Result = $num1 * $num2
-    Write-Host "The result is " $Result -ForegroundColor Green
+    Write-Host "The result is " $Result -ForegroundColor DarkCyan
 }
 Function Division
 {
     $num1, $num2 = Get-Numbers
     $Total = $num1 / $num2
-    Write-Host "The total is " $Total -ForegroundColor Green
+    Write-Host "The total is " $Total -ForegroundColor Yellow
 }
 
 function Get-Numbers
 {
-    [int]$num1 = Read-Host "Enter the first number"
-    [int]$num2 = Read-host "Enter the second number"
+    # 1. First number prompt
+    Write-Host "Enter the first number: " -ForegroundColor DarkGreen -NoNewline
+    [int]$num1 = Read-Host
+
+    # 2. Second number prompt
+    Write-Host "Enter the second number: " -ForegroundColor DarkYellow -NoNewline
+    [int]$num2 = Read-Host
+
     return $num1, $num2
 }
 #Start loop
